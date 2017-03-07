@@ -1,0 +1,32 @@
+' Add Board Locator Module if it is enabled.
+    If Range("E11") = 1 Then
+        Module = ""
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        ' Main Template Location
+        'sTemplate = "C:\Users\rwinne\Documents\Direct Series Configurator\Direct Series Template.txt"
+        
+        ' Module Location
+        sModule = "C:\Users\rwinne\Documents\Direct Series Configurator\Modules\Board Locator Module.txt"
+        iModuleNum = FreeFile
+        Open sModule For Input As iModuleNum
+        
+        ' Grabs all text in Module and Stores it in string Module
+            Do Until EOF(iModuleNum)
+                Line Input #iModuleNum, sBuf
+                Module = Module & sBuf & vbCrLf
+            Loop
+            Close iModuleNum
+        
+        ' Grabs all text in Main Template and Stores it in string sTEMP
+            
+
+        Close iFileNum
+        ' Replaces Auto Cycle Module Tag with Auto Cycle Module
+        sTemp = Replace(sTemp, "REM Board Locator Module Insert", Module)
+        sTemp = Replace(sTemp, "REM Board Locator Module ", "")
+        
+        'Print #iFileNum1, sTemp
+    End If

@@ -1,0 +1,121 @@
+Version 1.0
+Working Main Creations
+
+Version 2.x
+- SysConfig.ini (Not Complete)
+- Updated Information to be pulled from Workcell BOM, Menu, and Part #
+- All Config Files Copied Over
+- All Lib Folders created
+
+Version 3.x
+Critical info
+      - Workcel Bom Part Number Starting Cell and Ending Cell
+      - Part Numbers      
+
+
+
+Tested Modules
+==============
+Board Locators
+Conveyor Width Adjust
+
+
+
+ToDo
+==============
+Inputs/Outputs From Schematics
+Front Panel I/O Screen
+- Specific Inputs and Outputs. Currently puts all options
+Dynamic Library Loading
+Teaching Routines
+- Conveyor Width
+- Pressure Monitor
+Change Valve/Conveyor Width adjust messages to just say width adjust
+Message 1264 - Valve Width Lock Errors
+Engineering Folder Access
+Path Master Config
+Setup Tree
+NO_VIS for fid options vs programming camera... more research needed
+Spare Heads dont need to be in Manual Mode
+
+Dep Folder
+	GeneralOutputs_0_1=1,(0 for 4 axis controller, 1 for 8 axis controller)
+	GeneralInputs_0_1=1,(0 for 4 axis controller, 1 for 8 axis controller)
+	
+Tutorial
+- Add Ability to select any of the Tutorials (Setup Tree)	
+
+Syringe Pressure Monitoring
+- Need to find correct place to start AN_TM[4], and AN_TM[5]
+
+Manual Limit Finding
+
+
+
+Completed
+=========
+Rev the Mains
+Axes - Done
+Black Light (Front Panel Options Control)
+Material Pressure Monitoring
+Material Pressure Monitoring (Needs to be added to main template)
+
+
+
+
+
+
+--------------------SUNB4723--------------------
+2/17
+Axes = ? 
+I/O Tab
+xxx - Black Light Enable/Disable
+
+Gauges
+- When there is a tank there is always tank pressure analog signal
+- When there is a syringe there is Material air
+
+Syring or Atom Air
+- High Limit for Gauges
+
+Labels.ini from server
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------
+
+
+
+--------------------TEST2424--------------------
+2/13
+xxx Conveyor Width Adjust  xxx     
+xxx - Set Width in manual mode xxx 
+
+xxx Device Tab Missing   xxx
+
+ Options Tab INI 
+xxx - Light Control xxx
+    - Always White Light
+    - Sometimes Black Light
+
+xxx Gauges.ini setup
+xxx - too many gauges
+
+xxx Sysconfig.ini xxx
+xxx - too many valves xxx 
+
+xxx Options Tab xxx
+xxx - grab latest from server
+
+#GET_PRP
+- Conditionals
+XXX - Max Properties
+

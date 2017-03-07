@@ -1,0 +1,215 @@
+Sub CreateMain()
+Dim sBuf As String
+Dim sTemp As String
+Dim Module As String
+Dim iFileNum As Integer
+Dim iFileNum1 As Integer
+Dim iFileNum2 As Integer
+Dim iFileNum10 As Integer
+Dim iModuleNum As Integer
+Dim sTempalte As String
+Dim sTempalte1 As String
+Dim sModule As String
+Dim newFile As Integer
+
+
+' Delete Previously Generated Main
+'If Len(Dir$("C:\Users\rwinne\Documents\Direct Series Configurator\Wxxxx_M01.txt")) > 0 Then
+ '    Kill "C:\Users\rwinne\Documents\Direct Series Configurator\Wxxxx_M01.txt"
+'End If
+
+
+sTemp = ""
+Dim iMain As Long
+iMain = FreeFile
+iFileNum = FreeFile + 1
+sTemplate1 = "C:\Users\rwinne\Documents\Direct Series Configurator\Wxxxx_M01.txt"
+' Opens Main template for edit
+Open sTemplate1 For Output As iMain
+
+ ' Main Template Location
+sTemplate = "C:\Users\rwinne\Documents\Direct Series Configurator\Direct Series Template.txt"
+Open sTemplate For Input As iFileNum
+
+
+
+
+ ' Grabs all text in Main Template and Stores it in string sTEMP
+            
+            Do Until EOF(iFileNum)
+                Line Input #iFileNum, sBuf
+                sTemp = sTemp & sBuf & vbCrLf
+            Loop
+        Close iFileNum
+
+
+' Add Auto Cycle Module if it is enabled.
+    If Range("E9") = 2 Then
+        Module = ""
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        ' Module Location
+        sModule = "C:\Users\rwinne\Documents\Direct Series Configurator\Modules\Single Zone Conveyor Module.txt"
+        iModuleNum = FreeFile
+        Open sModule For Input As iModuleNum
+
+
+        ' Grabs all text in Module and Stores it in string Module
+            Do Until EOF(iModuleNum)
+                Line Input #iModuleNum, sBuf
+                Module = Module & sBuf & vbCrLf
+            Loop
+            Close iModuleNum
+        
+        
+        ' Replaces Auto Cycle Module Tag with Auto Cycle Module
+        sTemp = Replace(sTemp, "REM Auto Cycle Module Insert", Module)
+        'sTemp = Replace(sTemp, "REM Board Locator Module ", "")
+        
+        'Print #iFileNum1, sTemp
+        Close iFileNum
+        Close iFileNum1
+        Close newFile
+    End If
+
+' Add Flow Module if it is enabled.
+    If Range("E3") = 1 Then
+    Module = ""
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        ' Module Location
+        sModule = "C:\Users\rwinne\Documents\Direct Series Configurator\Modules\Flow Monitor Module.txt"
+        iModuleNum = FreeFile
+        Open sModule For Input As iModuleNum
+        
+        ' Grabs all text in Module and Stores it in string Module
+            Do Until EOF(iModuleNum)
+                Line Input #iModuleNum, sBuf
+                Module = Module & sBuf & vbCrLf
+            Loop
+            Close iModuleNum
+        
+        Close iFileNum
+        ' Replaces Auto Cycle Module Tag with Auto Cycle Module
+        sTemp = Replace(sTemp, "REM Flow Monitor Module Insert", Module)
+        sTemp = Replace(sTemp, "REM Flow Monitor Module ", "")
+        
+        'Print #iFileNum1, sTemp
+
+
+    End If
+    
+' Select Tool Type Head 1
+    If Range("E5") <> 0 Then
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        If Range("E5") = 2 Then
+        ' Insert Correct Tool Type
+        sTemp = Replace(sTemp, "TYPE[1]=?", "TYPE[1]=3")
+        End If
+        
+        If Range("E5") = 1 Then
+        ' Insert Correct Tool Type
+        sTemp = Replace(sTemp, "TYPE[1]=?", "TYPE[1]=1")
+        End If
+        
+        'Print #iFileNum1, sTemp
+    End If
+    
+    
+' Select Tool Type Head 2
+    If Range("E6") <> 0 Then
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        If Range("E6") = 2 Then
+        ' Insert Correct Tool Type
+        sTemp = Replace(sTemp, "TYPE[2]=?", "TYPE[2]=3")
+        End If
+        
+        If Range("E6") = 1 Then
+        ' Insert Correct Tool Type
+        sTemp = Replace(sTemp, "TYPE[2]=?", "TYPE[2]=1")
+        End If
+        
+        'Print #iFileNum1, sTemp
+    End If
+   
+   
+' Add Needle Calibration Module if it is enabled.
+    If Range("E16") = 1 Then
+        Module = ""
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        ' Module Location
+        sModule = "C:\Users\rwinne\Documents\Direct Series Configurator\Modules\Needle Calibration Module.txt"
+        iModuleNum = FreeFile
+        Open sModule For Input As iModuleNum
+        
+        ' Grabs all text in Module and Stores it in string Module
+            Do Until EOF(iModuleNum)
+                Line Input #iModuleNum, sBuf
+                Module = Module & sBuf & vbCrLf
+            Loop
+            Close iModuleNum
+        
+        Close iFileNum
+        ' Replaces Auto Cycle Module Tag with Auto Cycle Module
+        sTemp = Replace(sTemp, "REM Needle Calibration Module Insert", Module)
+        sTemp = Replace(sTemp, "REM Needle Cal Module ", "")
+        
+        'Print #iFileNum1, sTemp
+    End If
+    
+    
+' Add Board Locator Module if it is enabled.
+    If Range("E11") = 1 Then
+        Module = ""
+        iFileNum = FreeFile
+        iFileNum1 = FreeFile
+        newFile = FreeFile
+        
+        ' Main Template Location
+        'sTemplate = "C:\Users\rwinne\Documents\Direct Series Configurator\Direct Series Template.txt"
+        
+        ' Main File Location
+        'sTemplate1 = "C:\Users\rwinne\Documents\Direct Series Configurator\Wxxxx_M01.txt"
+        ' Opens Main template for edit
+        'Open sTemplate For Input As iFileNum
+        ' Module Location
+        sModule = "C:\Users\rwinne\Documents\Direct Series Configurator\Modules\Board Locator Module.txt"
+        iModuleNum = FreeFile
+        Open sModule For Input As iModuleNum
+        
+        ' Grabs all text in Module and Stores it in string Module
+            Do Until EOF(iModuleNum)
+                Line Input #iModuleNum, sBuf
+                Module = Module & sBuf & vbCrLf
+            Loop
+            Close iModuleNum
+        
+        ' Grabs all text in Main Template and Stores it in string sTEMP
+            
+        '    Do Until EOF(iFileNum)
+         '       Line Input #iFileNum, sBuf
+          '      sTemp = sTemp & sBuf & vbCrLf
+          '  Loop
+        Close iFileNum
+        ' Replaces Auto Cycle Module Tag with Auto Cycle Module
+        sTemp = Replace(sTemp, "REM Board Locator Module Insert", Module)
+        sTemp = Replace(sTemp, "REM Board Locator Module ", "")
+        
+        'Print #iFileNum1, sTemp
+    End If
+   
+    Print #iMain, sTemp
+    Close iMain
+End Sub
